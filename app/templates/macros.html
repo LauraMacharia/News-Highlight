@@ -1,0 +1,19 @@
+{% macro displayNewsList(news_list) %}
+	{% for item in news_list | batch(3)%}
+        <div class="row">
+            {% for news in item %}
+	            <div class="col-md-4">
+						<div>
+							<a href="/news/{{news.id}}">
+							    {{ news.name}}
+							</a>
+							<p>
+								{{ news.description |truncate(100)}}
+							</p>
+							<a href="/news/{{news.id}}" class="btn btn-info btn-sm">Visit {{news.name}}</a>
+						</div>
+		        </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endmacro %}
